@@ -64,7 +64,7 @@
           <ul class="treeview-menu">
            
             <li class="active"><router-link :to="{ name : 'role_list' }"><i class="fa fa-eye"></i> Role </router-link></li>
-            <li class="active"><router-link :to="{ name : 'role_list' }"><i class="fa fa-eye"></i> Role Menage </router-link></li>
+            <li class="active"><router-link :to="{ name : 'manage_role' }"><i class="fa fa-eye"></i> Role Management </router-link></li>
             <li class="active"><router-link :to="{ name : 'permission_list' }"><i class="fa fa-eye"></i>Permission </router-link></li>
             <li class="active"><router-link :to="{ name : 'permission_list' }"><i class="fa fa-eye"></i>Permission Menage </router-link></li>
 

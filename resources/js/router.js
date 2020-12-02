@@ -21,6 +21,8 @@ import adminProfile      from "./components/admin/admin/Profile" ;
 import roleList          from "./components/admin/role/Index.vue" ;
 import AddRole           from "./components/admin/role/Add.vue" ;
 import EditRole          from "./components/admin/role/Edit.vue" ;
+import ManageRole        from "./components/admin/role/ManageRole.vue" ;
+import AssignPermission  from "./components/admin/role/AssignPermissions.vue" ;
 
 import permissionList    from "./components/admin/permission/Index.vue" ;
 import AddPermission     from "./components/admin/permission/Add.vue" ;
@@ -148,6 +150,24 @@ const routes = [
     component: EditRole,
     name : 'edit_role',
     meta: {  title:'role edit',
+             authAdmin: true 
+           } 
+    },
+
+    { 
+    path: '/backend/manage/role/edit/:id', 
+    component: ManageRole,
+    name : 'manage_role',
+    meta: {  title:'role management',
+             authAdmin: true 
+           } 
+    },
+
+   { 
+    path: '/backend/role/assign/permissions/:id', 
+    component: AssignPermission,
+    name : 'assign_permission',
+    meta: {  title:'role giving permission ',
              authAdmin: true 
            } 
     },

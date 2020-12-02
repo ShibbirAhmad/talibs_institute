@@ -119,6 +119,20 @@ class RoleController extends Controller
 
     }
 
+     public function get_permissions()
+
+    {
+
+        $permissions = Permission::orderBy('id','DESC')->get();
+
+        return response()->json([
+            "status" => "OK",
+            "permissions"  => $permissions ,
+        ]);
+
+    }
+
+
      public function add_permission(Request $request) {
 
         $permission = new Permission() ;

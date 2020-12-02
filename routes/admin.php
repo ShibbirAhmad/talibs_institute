@@ -40,6 +40,7 @@ Route::post('api/backend/category/admin/login','Admin\AdminController@login');
 
       //role route is here
       Route::get('api/get/permission/list','RoleController@get_permission_list');
+      Route::get('api/get/permissions/for/assign/role','RoleController@get_permissions');
       Route::post('api/add/permission','RoleController@add_permission');
       Route::get('api/get/edit/permission/item/{id}','RoleController@get_edit_permission');
       Route::post('api/edit/permission/{id}','RoleController@edit_permission');
