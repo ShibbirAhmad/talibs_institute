@@ -122,53 +122,6 @@ export default {
     },
 
 
-    deleteRole(role_id) {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You want delete this role!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes!",
-      }).then((result) => {
-        if (result.value) {
-          axios
-            .get("/api/delete/role/" +role_id)
-            .then((resp) => {
-              //console.log(resp)
-              if (resp.data.status == "OK") {
-                this.getRoleList();
-                this.$toasted.show(resp.data.message, {
-                  position: "top-center",
-                  type: "success",
-                  duration: 4000,
-                });
-              } else {
-                this.$toasted.show("some thing want to wrong", {
-                  position: "top-center",
-                  type: "error",
-                  duration: 4000,
-                });
-              }
-            })
-            .catch((error) => {
-              console.log(error);
-              this.$toasted.show("some thing want to wrong", {
-                position: "top-center",
-                type: "error",
-                duration: 4000,
-              });
-            });
-        } else {
-          this.$toasted.show("Ok ! no action here", {
-            position: "top-center",
-            type: "info",
-            duration: 3000,
-          });
-        }
-      });
-    },
   },
 };
 </script>
