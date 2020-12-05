@@ -32,18 +32,21 @@ Route::post('api/backend/category/admin/login','Admin\AdminController@login');
 
 
       //role route is here
-      Route::get('api/get/role/list','RoleController@get_role_list');
-      Route::post('api/add/role','RoleController@add_role');
-      Route::get('api/get/edit/role/item/{id}','RoleController@get_edit_role');
-      Route::post('api/edit/role/{id}','RoleController@edit_role');
+      Route::get('api/get/role/list','RoleAndPermissionCRUDController@get_role_list');
+      Route::post('api/add/role','RoleAndPermissionCRUDController@add_role');
+      Route::get('api/get/edit/role/item/{id}','RoleAndPermissionCRUDController@get_edit_role');
+      Route::post('api/edit/role/{id}','RoleAndPermissionCRUDController@edit_role');
 
 
       //role route is here
-      Route::get('api/get/permission/list','RoleController@get_permission_list');
-      Route::get('api/get/permissions/for/assign/role','RoleController@get_permissions');
-      Route::post('api/add/permission','RoleController@add_permission');
-      Route::get('api/get/edit/permission/item/{id}','RoleController@get_edit_permission');
-      Route::post('api/edit/permission/{id}','RoleController@edit_permission');
+      Route::get('api/get/permission/list','RoleAndPermissionCRUDController@get_permission_list');
+      Route::get('api/get/role/assign/for/model/{id}','RoleController@get_role_of_model');
+      Route::post('api/update/assign/role/to/model/{id}','RoleController@modelAssignRoles');
+      Route::get('api/get/permissions/assign/for/model/{id}','RoleController@get_permissions_of_model');
+      Route::post('api/update/assign/permission/to/model/{id}','RoleController@modelAssignPermissions');
+      Route::post('api/add/permission','RoleAndPermissionCRUDController@add_permission');
+      Route::get('api/get/edit/permission/item/{id}','RoleAndPermissionCRUDController@get_edit_permission');
+      Route::post('api/edit/permission/{id}','RoleAndPermissionCRUDController@edit_permission');
 
      
  });

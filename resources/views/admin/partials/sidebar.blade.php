@@ -1,4 +1,9 @@
-  <aside class="main-sidebar">
+<?php
+   if (Session()->has('admin')) {
+     $admin= session()->get('admin');
+   }
+?>
+<aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
@@ -25,9 +30,10 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-
-         <li class="active treeview"><a href=""> <i class="fa fa-dashboard"></i> Dashboard</a></li>
-                  <li class="treeview">
+        @if ($admin->hasPermissionTo('view dashboard'))
+            <li class="active treeview"><a href=""> <i class="fa fa-dashboard"></i> Dashboard</a></li> 
+        @endif
+         <li class="treeview">
           <a href="#">
             <i class="fa fa-user-secret"></i> <span>Admin</span>
             <span class="pull-right-container">
@@ -62,12 +68,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-           
-            <li class="active"><router-link :to="{ name : 'role_list' }"><i class="fa fa-eye"></i> Role </router-link></li>
-            <li class="active"><router-link :to="{ name : 'manage_role' }"><i class="fa fa-eye"></i> Role Management </router-link></li>
-            <li class="active"><router-link :to="{ name : 'permission_list' }"><i class="fa fa-eye"></i>Permission </router-link></li>
-            <li class="active"><router-link :to="{ name : 'permission_list' }"><i class="fa fa-eye"></i>Permission Menage </router-link></li>
-
+            <li class="active"><router-link :to="{ name : 'role_list' }"><i class="fa fa-cog"></i> Role </router-link></li>
+            <li class="active"><router-link :to="{ name : 'permission_list' }"><i class="fa fa-check-square-o" aria-hidden="true"></i>Permission </router-link></li>
           </ul>
         </li>
 

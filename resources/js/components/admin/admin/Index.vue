@@ -54,8 +54,18 @@
                                                 <router-link :to="{ name: 'edit_admin', params: { id: admin.id }}"
                                                              class="btn btn-success btn-sm"><i
                                                     class="fa fa-edit"></i></router-link>
+
+                                                <router-link :to="{ name: 'assign_role', params: { id: admin.id }}"
+                                                             class="btn btn-success btn-sm"> <i class="fa fa-cog"></i> Role </router-link> 
+
+
+                                               <router-link :to="{ name: 'assign_permission', params: { id: admin.id }}"
+                                                             class="btn btn-success btn-sm"><i
+                                                    class="fa fa-edit"></i> Assigned Permission </router-link>         
+
                                                 <a class="btn btn-sm btn-warning" title="De-active" @click="deActive(admin)"
                                                    v-if="admin.status==1"><i class="fa fa-ban"></i></a>
+
                                                 <a class="btn btn-sm btn-primary" title="active" @click="active(admin)" v-else><i
                                                     class="fa fa-check"></i></a>
                                             </td>

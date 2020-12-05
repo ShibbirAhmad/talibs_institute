@@ -60,7 +60,7 @@
                     <pagination
                       :limit="3"
                       :data="permissions"
-                      @pagination-change-page="getpermissionList"
+                      @pagination-change-page="getPermissionList"
                     >
                       <span slot="prev-nav">&lt; Previous</span>
                       <span slot="next-nav">Next &gt;</span>
@@ -105,7 +105,7 @@ export default {
   methods: {
     getPermissionList(page = 1) {
       this.$Progress.start();
-      axios.get("/api/get/permission/list").then((resp) => {
+      axios.get("/api/get/permission/list?page=" + page).then((resp) => {
         console.log(resp);
         if (resp.data.status == "OK") {
           this.permissions = resp.data.permissions;

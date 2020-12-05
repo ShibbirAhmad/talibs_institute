@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use SpatiePermissionModelsRole;
-use SpatiePermissionModelsPermission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
-use App\Models\Role ;
-use App\Models\Permission ;
+use App\Models\Admin ;
 
 
 class RoleController extends Controller
@@ -39,120 +38,61 @@ class RoleController extends Controller
 
     // }
 
-    /**
 
-     * Display a listing of the resource.
+   
 
-     *
+    public function  get_role_of_model($id)
 
-     * @return IlluminateHttpResponse
+        {
+            $admin=Admin::findOrFail($id);
+            $model_has_roles_id=DB::table('model_has_roles')->where('model_id',$id)->select('role_id')->pluck('role_id') ;
+            $roles = Role::orderBy('id','DESC')->get();
 
-     */
+            return response()->json([
+                "status" => "OK",
+                "roles"  => $roles ,
+                "admin_name" => $admin->name ,
+                'model_has_roles_id' => $model_has_roles_id ,
+            ]);
 
-     public function get_role_list(Request $request)
+        }
+
+
+
+    
+
+    public function modelAssignRoles(Request $request, $id){
+          
+          $admin = Admin::find($id);
+          //erase old data of permission 
+          DB::table('model_has_roles')->where('model_id',$id)->delete();
+         //assign permission 
+         foreach ($request->role_id as $role_id) {
+               $role=Role::find($role_id ); // capture role object by find. Note:- only role id will not work here . there are object passing not id passing .
+              $admin->assignRole($role);
+         }
+
+         return  response()->json([
+             "status" => "OK",
+             "message" => "Role assigned successfully..",
+         ]);
+
+    }
+
+
+
+     public function get_permissions_of_model($id)
 
     {
-
-        $roles = Role::orderBy('id','DESC')->paginate(5);
-
-        return response()->json([
-            "status" => "OK",
-            "roles"  => $roles ,
-        ]);
-
-    }
-
-     public function add_role(Request $request) {
-
-        $role = new Role() ;
-        $role->name=$request->name ;
-        $role->guard_name=$request->guard_name ;
-        $role->save();
-        return response()->json([
-            "status" => "OK",
-            "message"  => "role added successfully " ,
-        ]);
-
-    }
-
-     public function get_edit_role($id){
-
-        $role = Role::findOrFail($id) ;
-
-        return response()->json([
-            "status" => "OK",
-            "role"  => $role ,
-        ]);
-
-    }
-
-
-
-
-     public function edit_role(Request $request,$id) {
-
-        $role = Role::findOrFail($id) ;
-        $role->name=$request->name ;
-        $role->guard_name=$request->guard_name ;
-        $role->save();
-
-        return response()->json([
-            "status" => "OK",
-            "message"  => "role updated successfully " ,
-        ]);
-
-    }
-
- 
-
-  
-    public function get_permission_list(Request $request)
-
-    {
-
-        $permissions = Permission::orderBy('id','DESC')->paginate(5);
-
-        return response()->json([
-            "status" => "OK",
-            "permissions"  => $permissions ,
-        ]);
-
-    }
-
-     public function get_permissions()
-
-    {
-
+        $admin=Admin::findOrFail($id);
+        $model_has_permissions_id=DB::table('model_has_permissions')->where('model_id',$id)->select('permission_id')->pluck('permission_id') ;
         $permissions = Permission::orderBy('id','DESC')->get();
 
         return response()->json([
             "status" => "OK",
             "permissions"  => $permissions ,
-        ]);
-
-    }
-
-
-     public function add_permission(Request $request) {
-
-        $permission = new Permission() ;
-        $permission->name=$request->name ;
-        $permission->guard_name=$request->guard_name ;
-        $permission->save();
-        return response()->json([
-            "status" => "OK",
-            "message"  => "Permission added successfully " ,
-        ]);
-
-    }
-
-     public function get_edit_permission($id){
-
-        $permission = Permission::findOrFail($id) ;
-
-        return response()->json([
-            "status" => "OK",
-            "permission"  => $permission ,
+            "admin_name" => $admin->name ,
+            'model_has_permissions_id' => $model_has_permissions_id ,
         ]);
 
     }
@@ -160,31 +100,26 @@ class RoleController extends Controller
 
 
 
-     public function edit_permission(Request $request,$id) {
 
-        $permission = Permission::findOrFail($id) ;
-        $permission->name=$request->name ;
-        $permission->guard_name=$request->guard_name ;
-        $permission->save();
+    public function modelAssignPermissions(Request $request, $id){
+          
+          $admin = Admin::find($id);
+          //erase old data of permission 
+          DB::table('model_has_permissions')->where('model_id',$id)->delete();
+         //assign permission 
+         foreach ($request->permission_id as $permission_id) {
+               $permission=Permission::find($permission_id ); // capture permission object by find. Note:- only permission id will not work here . there are object passing not id passing .
+              $admin->givePermissionTo($permission);
+         }
 
-        return response()->json([
-            "status" => "OK",
-            "message"  => "Permission updated successfully " ,
-        ]);
+         return  response()->json([
+             "status" => "OK",
+             "message" => "Permission assigned successfully..",
+         ]);
 
     }
 
 
-
-    /**
-
-     * Show the form for creating a new resource.
-
-     *
-
-     * @return IlluminateHttpResponse
-
-     */
 
     public function create()
 
@@ -208,27 +143,7 @@ class RoleController extends Controller
 
      */
 
-    public function roleAsignPermission(Request $request)
-
-    {
-
-        $this->validate($request, [
-
-            'name' => 'required|unique:roles,name',
-
-            'permission' => 'required',
-
-        ]);
-
-        $role = Role::create(['name' => $request->input('name')]);
-
-        $role->syncPermissions($request->input('permission'));
-
-        return redirect()->route('roles.index')
-
-                        ->with('success','Role created successfully');
-
-    }
+   
 
     /**
 
@@ -257,6 +172,34 @@ class RoleController extends Controller
         return view('roles.show',compact('role','rolePermissions'));
 
     }
+
+
+
+
+      public function roleAsignPermission(Request $request)
+    {
+
+        $this->validate($request, [
+
+            'name' => 'required|unique:roles,name',
+            'permission' => 'required',
+
+        ]);
+
+        $role = Role::create(['name' => $request->input('name')]);
+        $role->syncPermissions($request->input('permission'));
+
+        return redirect()->route('roles.index')->with('success','Role created successfully');
+
+    }
+
+
+
+   
+    
+
+
+    
 
     /**
 
@@ -351,5 +294,6 @@ class RoleController extends Controller
                         ->with('success','Role deleted successfully');
 
     }
+
 
 }
