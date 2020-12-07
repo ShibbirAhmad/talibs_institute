@@ -48,5 +48,9 @@ Route::post('api/backend/category/admin/login','Admin\AdminController@login');
       Route::get('api/get/edit/permission/item/{id}','RoleAndPermissionCRUDController@get_edit_permission');
       Route::post('api/edit/permission/{id}','RoleAndPermissionCRUDController@edit_permission');
 
+
+      //course route is here
+     
+
      
  });

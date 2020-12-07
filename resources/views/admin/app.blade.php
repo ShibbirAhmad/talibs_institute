@@ -135,9 +135,9 @@ li.dropdown a:hover {
    
    @endif
    
-
        <router-view> </router-view>
        <vue-progress-bar></vue-progress-bar>
+       
   @if (Session::has('admin'))
        @include('admin.partials.footer')
   @endif

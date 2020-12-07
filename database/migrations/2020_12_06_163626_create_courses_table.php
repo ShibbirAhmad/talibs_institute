@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
             $table->text('duration');
             $table->text('offer')->nullable();
             $table->text('description');
+            $table->text('image');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

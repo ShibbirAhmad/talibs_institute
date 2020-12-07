@@ -25,6 +25,12 @@ Vue.use(VueProgressBar, {
   height: '2px'
 })
 
+import datePicker from 'vue-bootstrap-datetimepicker';
+Vue.use(datePicker);
+
+import CKEditor from '@ckeditor/ckeditor5-vue2';
+Vue.use( CKEditor );
+
 const app = new Vue({
     el: '#app',
     router,

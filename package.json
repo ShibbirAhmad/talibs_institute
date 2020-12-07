@@ -24,9 +24,12 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^23.1.0",
+        "@ckeditor/ckeditor5-vue2": "^1.0.5",
         "laravel-vue-pagination": "^2.3.1",
         "sweetalert": "^2.1.2",
         "vform": "^1.0.1",
+        "vue-bootstrap-datetimepicker": "^5.0.1",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.4.9",
         "vue-toasted": "^1.1.28",
