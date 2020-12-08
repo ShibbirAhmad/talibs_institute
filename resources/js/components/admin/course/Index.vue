@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'add_category' }" class="btn btn-primary"
+          <router-link :to="{ name: 'add_course' }" class="btn btn-primary"
             ><i class="fa fa-plus"></i
           ></router-link>
         </h1>
@@ -12,15 +12,15 @@
           <li>
             <a href="#"><i class="fa fa-dashboard"></i>Dashboard</a>
           </li>
-          <li class="active">Category</li>
+          <li class="active">Course</li>
         </ol>
       </section>
       <section class="content">
-        <div class="row justify-content-center">
-          <div class="col-lg-10 col-lg-offset-2">
+        <div class="row table_row justify-content-center">
+          <div class="col-md-11 col-lg-offset-2">
             <div class="box box-primary">
               <div class="box-header with-border">
-                <h3 class="box-title">Category List</h3>
+                <h3 class="box-title">Course List</h3>
               </div>
               <div class="box-body">
                 <table
@@ -30,26 +30,36 @@
                     <tr>
                       <th>Serial</th>
                       <th>Name</th>
+                      <th>Category</th>
+                      <th>Duration</th>
+                      <th>Start Date</th>
+                      <th>Registered Student </th>
                       <th>Image</th>
+                      <th>offer</th>
                       <th>status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr
-                      v-for="(category, index) in categories.data"
+                      v-for="(course, index) in courses.data"
                       :key="index"
                     >
                       <td>{{ index + 1 }}</td>
-                      <td>{{ category.name }}</td>
+                      <td>{{ course.name }}</td>
+                      <td>{{ course.category_name.name }}</td>
+                      <td>{{ course.duration }}</td>
+                      <td>{{ course.start_date }}</td>
+                      <td> 0 </td>
                       <td>
                         <img
-                          :src="base_url + category.image"
+                          :src="course.image ? base_url + course.image : base_url+'images/no_image.jpg'"
                           class="small-image"
                         />
                       </td>
+                      <td>{{ course.offer }}%</td>
                       <td>
-                        <span v-if="category.status == 1" class="badge"
+                        <span v-if="course.status == 1" class="badge"
                           >active</span
                         >
                         <span v-else class="badge">De-active</span>
@@ -58,14 +68,14 @@
                         <router-link
                           class="btn btn-sm btn-success"
                           :to="{
-                            name: 'edit_category',
-                            params: { id: category.id },
+                            name: 'edit_course',
+                            params: { id: course.id },
                           }"
                           ><i class="fa fa-edit"></i
                         ></router-link>
                         <button
-                          v-if="category.status == 1"
-                          @click="deActiveCategory(category.id)"
+                          v-if="course.status == 1"
+                          @click="deActiveCourse(course.id)"
                           class="btn btn-sm btn-warning"
                         >
                           <i class="fa fa-ban"> </i>
@@ -73,13 +83,13 @@
 
                         <button
                           v-else
-                          @click="activeCategory(category.id)"
+                          @click="activeCourse(course.id)"
                           class="btn btn-sm btn-primary"
                         >
                           <i class="fa fa-check"> </i>
                         </button>
 
-                        <button @click="deleteCategory(category.id)" class="btn btn-sm btn-danger">
+                        <button @click="deleteCourse(course.id)" class="btn btn-sm btn-danger">
                           <i class="fa fa-trash"></i>
                         </button>
                       </td>
@@ -90,8 +100,8 @@
                   <div class="col-md-6">
                     <pagination
                       :limit="3"
-                      :data="categories"
-                      @pagination-change-page="getCategoryList"
+                      :data="courses"
+                      @pagination-change-page="getCourseList"
                     >
                       <span slot="prev-nav">&lt; Previous</span>
                       <span slot="next-nav">Next &gt;</span>
@@ -102,9 +112,9 @@
                     style="margin-top: 25px; text-align: right"
                   >
                     <p>
-                      Showing <strong>{{ categories.from }}</strong> to
-                      <strong>{{ categories.to }}</strong> of total
-                      <strong>{{ categories.total }}</strong> entries
+                      Showing <strong>{{ courses.from }}</strong> to
+                      <strong>{{ courses.to }}</strong> of total
+                      <strong>{{ courses.total }}</strong> entries
                     </p>
                   </div>
                 </div>
@@ -125,26 +135,27 @@ Vue.component(AlertError.name, AlertError);
 
 export default {
   created() {
-    this.getCategoryList();
+    this.getCourseList();
   },
 
   data() {
     return {
-      categories: {},
+      courses: {},
       base_url: this.$store.state.storage,
     };
   },
   methods: {
-    getCategoryList(page = 1) {
+    getCourseList(page = 1) {
       this.$Progress.start();
-      axios.get("/api/get/category/list").then((resp) => {
+      axios.get("/api/get/course/list?page="+page)
+      .then((resp) => {
         console.log(resp);
         if (resp.data.status == "OK") {
-          this.categories = resp.data.categories;
+          this.courses = resp.data.courses;
           this.$Progress.finish();
         } else {
           this.$Progress.fail();
-          this.toasted.show("something happend wrong", {
+          this.$toasted.show("something happend wrong", {
             type: "error",
             position: "top-center",
             duration: 3000,
@@ -153,7 +164,7 @@ export default {
       });
     },
 
-    activeCategory(category_id) {
+    activeCourse(course_id) {
       Swal.fire({
         title: "Are you sure?",
         text: "You want active this!",
@@ -165,10 +176,10 @@ export default {
       }).then((result) => {
         if (result.value) {
           axios
-            .get("/api/active/category/" + category_id)
+            .get("/api/active/course/" + course_id)
             .then((resp) => {
               if (resp.data.status == "OK") {
-                this.getCategoryList();
+                this.getCourseList();
                 this.$toasted.show(resp.data.message, {
                   position: "top-center",
                   type: "success",
@@ -199,7 +210,7 @@ export default {
       });
     },
 
-    deActiveCategory(category_id) {
+    deActiveCourse(course_id) {
       Swal.fire({
         title: "Are you sure?",
         text: "You want de-active this!",
@@ -211,10 +222,10 @@ export default {
       }).then((result) => {
         if (result.value) {
           axios
-            .get("/api/de-active/category/" + category_id)
+            .get("/api/de-active/course/" + course_id)
             .then((resp) => {
               if (resp.data.status == "OK") {
-                this.getCategoryList();
+                this.getCourseList();
                 this.$toasted.show(resp.data.message, {
                   position: "top-center",
                   type: "success",
@@ -245,10 +256,10 @@ export default {
       });
     },
 
-    deleteCategory(category_id) {
+    deleteCourse(course_id) {
       Swal.fire({
         title: "Are you sure?",
-        text: "You want delete this category!",
+        text: "You want delete this course!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -257,11 +268,11 @@ export default {
       }).then((result) => {
         if (result.value) {
           axios
-            .get("/api/delete/category/" +category_id)
+            .get("/api/delete/course/" +course_id)
             .then((resp) => {
               //console.log(resp)
               if (resp.data.status == "OK") {
-                this.getCategoryList();
+                this.getCourseList();
                 this.$toasted.show(resp.data.message, {
                   position: "top-center",
                   type: "success",
@@ -301,6 +312,11 @@ export default {
 
  .box {
      margin-left:-100px;
+ }
+
+ .table_row{
+    margin-right: 5px;
+    margin-left: -169px;
  }
 
 </style>

@@ -137,14 +137,14 @@ export default {
   methods: {
     getCategoryList(page = 1) {
       this.$Progress.start();
-      axios.get("/api/get/category/list").then((resp) => {
+      axios.get("/api/get/category/list?page="+page).then((resp) => {
         console.log(resp);
         if (resp.data.status == "OK") {
           this.categories = resp.data.categories;
           this.$Progress.finish();
         } else {
           this.$Progress.fail();
-          this.toasted.show("something happend wrong", {
+          this.$toasted.show("something happend wrong", {
             type: "error",
             position: "top-center",
             duration: 3000,

@@ -32,15 +32,7 @@ class CategoryController extends Controller
            ]);
     }
 
-    public function get_categories(Request $request){
-         $item = $request->item ?? 10 ;
-         $categories = Category::orderBy('id','desc')->paginate($item);
-         return response()->json([
-             "status" => "OK",
-             "categories" => $categories ,
-         ]);
- } 
-
+   
     // function for store category 
     public function add_category(Request $request){
 
@@ -83,7 +75,7 @@ class CategoryController extends Controller
               $category->name=$request->name;
           if ($request->hasFile('image')) {
 
-              if (file_exists("storage/".$category->image)) {
+              if (file_exists($category->image)) {
                   unlink("storage/".$category->image);
               }
               

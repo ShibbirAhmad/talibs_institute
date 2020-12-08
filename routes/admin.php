@@ -21,16 +21,6 @@ Route::post('api/backend/category/admin/login','Admin\AdminController@login');
       Route::post('api/update/profile/admin', 'AdminController@update_self_Profile');
       // admin route is finshed here
 
-      //category route is here
-      Route::get('api/get/category/list','CategoryController@get_category_list');
-      Route::post('api/add/category','CategoryController@add_category');
-      Route::get('api/get/edit/category/item/{id}','CategoryController@get_edit_category_item');
-      Route::post('api/edit/category/{id}','CategoryController@edit_category');
-      Route::get('api/de-active/category/{id}','CategoryController@deActive_category');
-      Route::get('api/active/category/{id}','CategoryController@active_category');
-      Route::get('api/delete/category/{id}','CategoryController@delete_category');
-
-
       //role route is here
       Route::get('api/get/role/list','RoleAndPermissionCRUDController@get_role_list');
       Route::post('api/add/role','RoleAndPermissionCRUDController@add_role');
@@ -48,8 +38,25 @@ Route::post('api/backend/category/admin/login','Admin\AdminController@login');
       Route::get('api/get/edit/permission/item/{id}','RoleAndPermissionCRUDController@get_edit_permission');
       Route::post('api/edit/permission/{id}','RoleAndPermissionCRUDController@edit_permission');
 
+      
+      //category route is here
+      Route::get('api/get/category/list','CategoryController@get_category_list');
+      Route::post('api/add/category','CategoryController@add_category');
+      Route::get('api/get/edit/category/item/{id}','CategoryController@get_edit_category_item');
+      Route::post('api/edit/category/{id}','CategoryController@edit_category');
+      Route::get('api/de-active/category/{id}','CategoryController@deActive_category');
+      Route::get('api/active/category/{id}','CategoryController@active_category');
+      Route::get('api/delete/category/{id}','CategoryController@delete_category');
 
-      //course route is here
+
+      //course route isourse
+      Route::get('api/get/course/list','CourseController@get_course_list');
+      Route::post('api/add/course','CourseController@add_course');
+      Route::get('api/get/edit/course/item/{id}','CourseController@get_edit_course_item');
+      Route::post('api/edit/course/{id}','CourseController@update_course');
+      Route::get('api/de-active/course/{id}','CourseController@deActive_course');
+      Route::get('api/active/course/{id}','CourseController@active_course');
+      Route::get('api/delete/course/{id}','CourseController@delete_course');
      
 
      
