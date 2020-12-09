@@ -17,7 +17,7 @@
       </section>
       <section class="content">
         <div class="row justify-content-center">
-          <div class="col-lg-6 col-lg-offset-2">
+          <div style="margin-left:350px" class="col-lg-6 col-lg-offset-2">
             <div class="box box-primary">
               <div class="box-header with-border">
                 <h3 class="box-title">Edit Admin</h3>

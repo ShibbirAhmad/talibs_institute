@@ -34,6 +34,11 @@ import AddCourse         from "./components/admin/course/Add.vue" ;
 import EditCourse        from "./components/admin/course/Edit.vue" ;
 
 
+import postList        from "./components/admin/blog_post/Index.vue" ;
+import AddPost         from "./components/admin/blog_post/Add.vue" ;
+import EditPost        from "./components/admin/blog_post/Edit.vue" ;
+
+
 const Foo = { template: '<div>public </div>' }
 
 
@@ -240,11 +245,38 @@ const routes = [
     },
 
 
+      
+   { 
+    path: '/backend/blog/post/list', 
+    component: postList,
+    name : 'post_list',
+    meta: {  title:'posts',
+             authAdmin: true 
+           } 
+    },
+
+   { 
+    path: '/backend/blog/post/add', 
+    component: AddPost,
+    name : 'add_post',
+    meta: {  title:'post add',
+             authAdmin: true 
+           } 
+    },
+
+    { 
+    path: '/backend/blog/post/edit/:id', 
+    component: EditPost,
+    name : 'edit_post',
+    meta: {  title:'post edit',
+             authAdmin: true 
+           } 
+    },
 
 
 
+    
 ]
-
 
 const router = new VueRouter({
   routes,

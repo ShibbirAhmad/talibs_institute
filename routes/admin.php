@@ -59,5 +59,15 @@ Route::post('api/backend/category/admin/login','Admin\AdminController@login');
       Route::get('api/delete/course/{id}','CourseController@delete_course');
      
 
+      //course route isourse
+      Route::get('api/get/blog/post/list','BlogPostController@get_blog_post_list');
+      Route::post('api/add/blog/post','BlogPostController@add_blog_post');
+      Route::get('api/get/edit/blog/post/item/{id}','BlogPostController@get_edit_blog_post_item');
+      Route::post('api/edit/blog/post/{id}','BlogPostController@update_blog_post');
+      Route::get('api/blog/post/de-active/{id}','BlogPostController@deActive_blog_post');
+      Route::get('api/blog/post/active/{id}','BlogPostController@active_blog_post');
+      Route::get('api/blog/post/delete/{id}','BlogPostController@delete_blog_post');
+     
+
      
  });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use Illuminate\Support\Facades\Storage ;
+use Illuminate\Support\Str;
 use Image;
 
 
@@ -40,16 +41,27 @@ class CourseController extends Controller
 
          $validateData=$this->validate($request,[
                'name' => 'required|unique:courses',
-               'course_id'=> 'required',
+               'category_id'=> 'required',
                'duration'=> 'required',
                'start_date'=> 'required',
                'description'=> 'required',
-               'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+               'image.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
           ]);
 
               $course = new Course();
               $course->name=$request->name;
-              $course->course_id=$request->course_id;
+              //this slug with encoding for any language 
+              function CleanURL($string, $delimiter = '-') {
+             // Remove special characters
+              $string = preg_replace("/[~`{}.'\"\!\@\#\$\%\^\&\*\(\)\_\=\+\/\?\>\<\,\[\]\:\;\|\\\]/", "", $string);
+             // Replace blank space with delimeter
+              $string = preg_replace("/[\/_|+ -]+/", $delimiter, $string);
+              return $string;
+             }
+              $slug=CleanURL($request->name);
+              $max_id=Course::max('id')+1 ;
+              $course->slug=$slug."-".$max_id;
+              $course->category_id=$request->category_id;
               $course->duration=$request->duration;
               $course->start_date=$request->start_date;
               $course->offer=$request->offer;
@@ -83,7 +95,7 @@ class CourseController extends Controller
 
          $validateData=$this->validate($request,[
                'name' => 'required|unique:courses,name,'.$id,
-               'course_id'=> 'required',
+               'category_id'=> 'required',
                'duration'=> 'required',
                'start_date'=> 'required',
                'description'=> 'required',
@@ -92,7 +104,7 @@ class CourseController extends Controller
 
               $course = Course::findOrFail($id);
               $course->name=$request->name;
-              $course->course_id=$request->course_id;
+              $course->category_id=$request->category_id;
               $course->duration=$request->duration;
               $course->start_date=$request->start_date;
               $course->offer=$request->offer;
