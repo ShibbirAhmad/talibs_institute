@@ -49,6 +49,10 @@ import AddSlider         from "./components/admin/slider/Add.vue" ;
 import EditSlider        from "./components/admin/slider/Edit.vue" ;
 
 
+import CategorySliderList from "./components/admin/category_slider/Index.vue" ;
+import AddCategorySlider  from "./components/admin/category_slider/Add.vue" ;
+import EditCategorySlider from "./components/admin/category_slider/Edit.vue" ;
+
 
 
 const Foo = { template: '<div>public </div>' }
@@ -338,6 +342,36 @@ const routes = [
     component: EditSlider,
     name : 'edit_slider',
     meta: {  title:'slider edit',
+             authAdmin: true 
+           } 
+    },
+
+
+
+    
+      { 
+    path: '/backend/for/category/slider/list', 
+    component: CategorySliderList,
+    name : 'category_slider_list',
+    meta: {  title:'category sliders',
+             authAdmin: true 
+           } 
+    },
+
+   { 
+    path: '/backend/for/category/slider/add', 
+    component: AddCategorySlider,
+    name : 'add_category_slider',
+    meta: {  title:'category slider add',
+             authAdmin: true 
+           } 
+    },
+
+    { 
+    path: '/backend/for/category/slider/edit/:id', 
+    component: EditCategorySlider,
+    name : 'edit_category_slider',
+    meta: {  title:'category slider edit',
              authAdmin: true 
            } 
     },

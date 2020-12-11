@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{name:'category_slider'}" class="btn btn-primary">
+          <router-link :to="{name:'category_slider_list'}" class="btn btn-primary">
             <i class="fa fa-arrow-right"></i>
           </router-link>
         </h1>
@@ -161,7 +161,7 @@ export default {
         .then((resp) => {
           console.log(resp)
           if (resp.data.status == "SUCCESS") {
-            this.$router.push({ name: "category_slider" });
+            this.$router.push({ name: "category_slider_list" });
             this.$toasted.show(resp.data.message, {
               type: "success",
               position: "top-center",

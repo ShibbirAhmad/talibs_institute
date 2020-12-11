@@ -81,7 +81,7 @@ Route::get('api/check/session/admin','Admin\AdminController@sessionCheck');
       Route::get('api/team/members/trash/{id}','TeamController@destroyTeamMember');
 
 
-     //slider route is here 
+     //landing slider route is here 
       Route::get('api/slider/list/get','SliderController@get_slider_list');
       Route::post('api/slider/add','SliderController@store_slider');
       Route::get('api/get/edit/slider/item/{id}','SliderController@getEditSliderItem');
@@ -90,6 +90,14 @@ Route::get('api/check/session/admin','Admin\AdminController@sessionCheck');
       Route::get('api/deActive/slider/{id}','SliderController@deActiveSlider');
       Route::get('api/delete/slider/{id}','SliderController@destroySlider');
 
+      //category slider route is here 
+      Route::get('api/category/list/slider','SliderController@category_slider_index');
+      Route::post('api/category/slider/add','SliderController@category_slider_store');
+      Route::get('api/category/get/edit/slider/{id}','SliderController@get_category_slider_edit');
+      Route::post('api/category/slider/update/{id}','SliderController@update_category_slider');
+      Route::get('api/category/active/slider/{id}','SliderController@active_category_slider');
+      Route::get('api/category/deActive/slider/{id}','SliderController@deActive_category_slider');
+      Route::get('api/category/delete/slider/{id}','SliderController@destroy_category_slider');
 
       
 

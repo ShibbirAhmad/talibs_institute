@@ -68,8 +68,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><router-link :to=" { name : 'add_slider' }" ><i class="fa fa-plus"></i> Add</router-link></li>
-            <li class="active"><router-link :to="{ name : 'slider_list' }"><i class="fa fa-eye"></i>Menage</router-link></li>
+            <li><router-link :to=" { name : 'slider_list' }" ><i class="fa fa-eye"></i>Landing Slider</router-link></li>
+            <li class="active"><router-link :to="{ name : 'category_slider_list' }"><i class="fa fa-eye"></i>Category Slider </router-link></li>
           </ul>
         </li>
 

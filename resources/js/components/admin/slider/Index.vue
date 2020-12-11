@@ -17,13 +17,8 @@
                     <div class="row justify-content-center">
                         <div style="margin-left:290px" class="col-md-8 col-lg-offset-1">
                             <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <h3 class="box-title">slider's table</h3>
-
-                                        </div>
-                                    </div>
+                                <div class="box-header with-border text-center">
+                                  <h3 class="box-title">slider's table</h3>
                                 </div>
                                 <div class="box-body">
                                     <table class="table table-striped">

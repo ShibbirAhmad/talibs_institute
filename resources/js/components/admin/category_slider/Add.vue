@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{name:'category_slider'}" class="btn btn-primary">
+          <router-link :to="{name:'category_slider_list'}" class="btn btn-primary">
             <i class="fa fa-arrow-right"></i>
           </router-link>
         </h1>
@@ -19,9 +19,9 @@
       </section>
       <section class="content">
         <div class="row justify-content-center">
-          <div class="col-lg-6 col-lg-offset-2">
+          <div style="margin-left:390px;" class="col-lg-6 col-lg-offset-2">
             <div class="box box-primary">
-              <div class="box-header with-border">
+              <div class="box-header with-border text-center">
                 <h3 class="box-title">
                   Add category or subCategory slider
                   <small>({{ image_size_text }})</small>
@@ -56,9 +56,9 @@
                           :class="{ 'is-invalid': form.errors.has('page_postion') }"
                         >
                           <option value="select_type" >select slider type </option>
-                          <option value="1">Category Slider</option>
-                          <option value="2">subCategory Slider </option>
-                          <option value="3">subSubCategory Slider </option>
+                          <option value="1">Spoken English Slider</option>
+                          <option value="2">IELTS Slider </option>
+                          <option value="3">TOFEL Slider </option>
                         </select>
                         <has-error :form="form" field="image"></has-error>
                       </div>
@@ -145,7 +145,7 @@ export default {
         .then((resp) => {
           console.log(resp)
           if (resp.data.status == "SUCCESS") {
-            this.$router.push({ name: "category_slider" });
+            this.$router.push({ name: "category_slider_list" });
             this.$toasted.show(resp.data.message, {
               type: "success",
               position: "top-center",
