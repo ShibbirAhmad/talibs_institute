@@ -112,7 +112,7 @@ class CourseController extends Controller
               $course->status=1;
 
           if ($request->hasFile('image')) {
-              if (file_exists($course->image)) {
+              if ($course->image) {
                    unlink("storage/".$course->image);
               }
               $inerted_image = $request->file('image');

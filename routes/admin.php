@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::post('api/backend/category/admin/login','Admin\AdminController@login');
-  Route::get('api/check/session/admin','Admin\AdminController@sessionCheck');
+Route::get('api/check/session/admin','Admin\AdminController@sessionCheck');
+
  Route::group([
       'namespace' => 'Admin',
       'middleware' => 'admin'
@@ -68,6 +69,19 @@ Route::post('api/backend/category/admin/login','Admin\AdminController@login');
       Route::get('api/blog/post/active/{id}','BlogPostController@active_blog_post');
       Route::get('api/blog/post/delete/{id}','BlogPostController@delete_blog_post');
      
+      
+      //team route is here 
+      Route::get('api/team/members/list','TeamController@index');
+      Route::post('api/add/new/member/team','TeamController@addTeamMember');
+      Route::get('api/team/members/search/{data}','TeamController@search_team_member');
+      Route::get('api/get/editing/team/member/{id}','TeamController@getEditTeamMember');
+      Route::post('api/team/member/info/update/{id}','TeamController@updateTeamMember');
+      Route::get('api/team/members/deactive/{id}','TeamController@deactiveTeamMember');
+      Route::get('api/team/members/active/{id}','TeamController@activeTeamMember');
+      Route::get('api/team/members/trash/{id}','TeamController@destroyTeamMember');
+
+
+
 
      
  });

@@ -14,7 +14,7 @@ class BlogPostController extends Controller
 {
      
 
-      
+    
      public function get_blog_post_list(){
 
            $posts = BlogPost::orderBy('id','desc')->with('admin_name')->paginate(10);
@@ -107,7 +107,7 @@ class BlogPostController extends Controller
              $post->status=1;
 
           if ($request->hasFile('image')) {
-                if (file_exists($post->image)) {
+                if ($post->image) {
                    unlink("storage/".$post->image);
               }
               $inerted_image = $request->file('image');

@@ -75,7 +75,7 @@ class CategoryController extends Controller
               $category->name=$request->name;
           if ($request->hasFile('image')) {
 
-              if (file_exists($category->image)) {
+              if ($category->image) {
                   unlink("storage/".$category->image);
               }
               

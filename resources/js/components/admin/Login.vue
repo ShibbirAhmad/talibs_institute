@@ -108,6 +108,11 @@ export default {
               this.$router.push({ name : 'admin_dashboard'});
               location.reload();
           }else{
+              this.$toasted.show(resp.data.message,{
+              type:'error',
+              position:'top-center',
+              duration:3000,
+              });
              this.$Progress.fail() ;
           }
         });

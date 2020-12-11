@@ -43,7 +43,7 @@
                       :key="index"
                     >
                       <td>{{ index + 1 }}</td>
-                      <td>{{ post.title.substr(1,60) }}</td>
+                      <td>{{ post.title.substr(0,60) }}</td>
                       <td>{{ post.admin_name.name }}</td>
                       <td> 0 </td>
                       <td>

@@ -34,9 +34,16 @@ import AddCourse         from "./components/admin/course/Add.vue" ;
 import EditCourse        from "./components/admin/course/Edit.vue" ;
 
 
-import postList        from "./components/admin/blog_post/Index.vue" ;
-import AddPost         from "./components/admin/blog_post/Add.vue" ;
-import EditPost        from "./components/admin/blog_post/Edit.vue" ;
+import postList          from "./components/admin/blog_post/Index.vue" ;
+import AddPost           from "./components/admin/blog_post/Add.vue" ;
+import EditPost          from "./components/admin/blog_post/Edit.vue" ;
+
+
+import TeamMember        from "./components/admin/team/Index.vue" ;
+import AddTeamMember     from "./components/admin/team/Add.vue" ;
+import EditTeamMember    from "./components/admin/team/Edit.vue" ;
+
+
 
 
 const Foo = { template: '<div>public </div>' }
@@ -269,6 +276,34 @@ const routes = [
     component: EditPost,
     name : 'edit_post',
     meta: {  title:'post edit',
+             authAdmin: true 
+           } 
+    },
+  
+      
+   { 
+    path: '/backend/employee/list', 
+    component: TeamMember,
+    name : 'team_member',
+    meta: {  title:'teams',
+             authAdmin: true 
+           } 
+    },
+
+   { 
+    path: '/backend/employee/add', 
+    component: AddTeamMember,
+    name : 'add_team_member',
+    meta: {  title:'team member add',
+             authAdmin: true 
+           } 
+    },
+
+    { 
+    path: '/backend/employee/edit/:id', 
+    component: EditTeamMember,
+    name : 'edit_team_member',
+    meta: {  title:'team member edit',
              authAdmin: true 
            } 
     },
