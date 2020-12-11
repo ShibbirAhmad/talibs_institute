@@ -81,7 +81,36 @@ Route::get('api/check/session/admin','Admin\AdminController@sessionCheck');
       Route::get('api/team/members/trash/{id}','TeamController@destroyTeamMember');
 
 
+     //slider route is here 
+      Route::get('api/slider/list/get','SliderController@get_slider_list');
+      Route::post('api/slider/add','SliderController@store_slider');
+      Route::get('api/get/edit/slider/item/{id}','SliderController@getEditSliderItem');
+      Route::post('api/slider/update/{id}','SliderController@update_slider');
+      Route::get('api/active/slider/{id}','SliderController@activeSlider');
+      Route::get('api/deActive/slider/{id}','SliderController@deActiveSlider');
+      Route::get('api/delete/slider/{id}','SliderController@destroySlider');
 
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
 
      
  });

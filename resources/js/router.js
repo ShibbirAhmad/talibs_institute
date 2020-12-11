@@ -44,6 +44,11 @@ import AddTeamMember     from "./components/admin/team/Add.vue" ;
 import EditTeamMember    from "./components/admin/team/Edit.vue" ;
 
 
+import sliderList        from "./components/admin/slider/Index.vue" ;
+import AddSlider         from "./components/admin/slider/Add.vue" ;
+import EditSlider        from "./components/admin/slider/Edit.vue" ;
+
+
 
 
 const Foo = { template: '<div>public </div>' }
@@ -307,6 +312,37 @@ const routes = [
              authAdmin: true 
            } 
     },
+
+
+
+      { 
+    path: '/backend/slider/list', 
+    component: sliderList,
+    name : 'slider_list',
+    meta: {  title:'sliders',
+             authAdmin: true 
+           } 
+    },
+
+   { 
+    path: '/backend/slider/add', 
+    component: AddSlider,
+    name : 'add_slider',
+    meta: {  title:'slider add',
+             authAdmin: true 
+           } 
+    },
+
+    { 
+    path: '/backend/slider/edit/:id', 
+    component: EditSlider,
+    name : 'edit_slider',
+    meta: {  title:'slider edit',
+             authAdmin: true 
+           } 
+    },
+
+
 
 
 
