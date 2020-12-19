@@ -1,11 +1,11 @@
 <template>
   <div>
-    <admin-main></admin-main>
+    <navbar> </navbar>
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
           <router-link :to="{name:'category_slider_list'}" class="btn btn-primary">
-            <i class="fa fa-arrow-right"></i>
+            <i class="fa fa-arrow-left"></i>
           </router-link>
         </h1>
         <ol class="breadcrumb">
@@ -14,12 +14,12 @@
               <i class="fa fa-dashboard"></i>Dashboard
             </a>
           </li>
-          <li class="active">Category slider Edit </li>
+          <li class="active">Category Slider Edit </li>
         </ol>
       </section>
       <section class="content">
         <div class="row justify-content-center">
-          <div class="col-lg-6 col-lg-offset-2">
+          <div style="margin-left:390px" class="col-md-6 col-lg-offset-2">
             <div class="box box-primary">
               <div class="box-header with-border">
                 <h3 class="box-title">
@@ -57,14 +57,19 @@
                         >
                           <option value="1">Category Slider</option>
                           <option value="2">subCategory Slider </option>
-                           <option value="3">subSubCategory Slider </option>
                         </select>
                         <has-error :form="form" field="image"></has-error>
                       </div>
 
-                      <div class="preview-image">
-
-                        <img class="img-responsive" :src="form.preview_image" alt="slider" />
+                      <div class="form-group">
+                         <div v-if="preview_image">
+                            <img :src="preview_image" class="img-responsive" >
+                         </div>
+                       
+                        <div v-else>
+                             <img class="img-responsive" :src="base_url+this.form.image"  />
+                         </div>
+                       
                        
                       </div>
                       <div class="form-group">
@@ -117,18 +122,18 @@ export default {
     return {
       form: new Form({
         image: "",
-        preview_image:"",
         page_position: "",
         url: "",
      
       }),
+      preview_image:"",
       error: "",
       loading: true,
       image_width: 1184,
       image_height: 250,
       imagae_size:550,
       image_size_text: "Image size must be 1184*350px",
-     base_url:this.$store.state.image_base_link,
+      base_url:this.$store.state.storage,
 
     };
   },
@@ -143,7 +148,6 @@ export default {
                 if (resp.data.success== "OK") {
                     this.form.page_position=resp.data.slider.page_position ;
                     this.form.url=resp.data.slider.url ;
-                    this.form.preview_image= this.base_url+resp.data.slider.image ;
                     this.form.image= resp.data.slider.image ;
                 }
             })
@@ -217,11 +221,11 @@ export default {
     setImage(file, evt) {
       console.log(file);
       this.form.image = file;
-      this.form.preview_image = evt.target.result;
+      this.preview_image = evt.target.result;
     },
 
   },
-  computed: {},
+  computed: {      },
 };
 </script>
 

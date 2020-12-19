@@ -1,6 +1,6 @@
 <template>
   <div>
-    <admin-main></admin-main>
+    <navbar> </navbar>
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
@@ -14,7 +14,7 @@
               <i class="fa fa-dashboard"></i>Dashboard
             </a>
           </li>
-          <li class="active">Category slider </li>
+          <li class="active">Category Slider </li>
         </ol>
       </section>
       <section class="content">
@@ -65,7 +65,7 @@
 
                       <div class="preview-image">
                         <img v-if="form.preview_image.length" class="img-responsive" :src="form.preview_image" alt="slider" />
-                        <img v-else class="img-responsive" :src="'/images/noimage.png'" style="width:508px;height:150px;" />
+                        <img v-else class="img-responsive" :src="base_url+'/images/empty_image.jpg'" style="width:645px;height:180px;" />
                       </div>
                       <div class="form-group">
                         <label for="file" class="selectFile">select a file</label>
@@ -129,6 +129,7 @@ export default {
       image_height: 250,
       imagae_size:550,
       image_size_text: "Image size must be 1184*350px",
+      base_url:this.$store.state.storage ,
     };
   },
 

@@ -1,6 +1,6 @@
  <template>
     <div>
-        <admin-main></admin-main>
+      <navbar> </navbar>
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
@@ -15,13 +15,13 @@
             <section class="content">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div style="margin-left:290px;" class="col-lg-8 col-lg-offset-1">
+                        <div style="margin-left:200px;" class="col-lg-10 col-lg-offset-1">
                             <div class="box box-primary">
                                 <div class="box-header with-border text-center">
                                  <h3 class="box-title"> Category Slider table</h3>
                                 </div>
                                 <div class="box-body">
-                                    <table class="table table-striped">
+                                    <table class="table text-center table-striped">
                                         <thead>
                                         <tr>
                                             <th scope="col">#</th>
@@ -38,14 +38,10 @@
                                         <tr v-for="(slider,index) in sliders.data" :key="index" v-else>
                                             <td scope="row">{{index+1}}</td>
                                             <td>
-                                                <div v-if="slider.image.length">
-                                                   <img :src="'/../storage/'+slider.image"
-                                                     style="width: 100px;" alt="slider Image">     
+                                                <div >
+                                                   <img :src="slider.image ? base_url+slider.image : base_url+'images/no_image.jpg'"
+                                                      class="small-image">     
                                                 </div>
-                                                <div v-else> 
-                                                    <img :src="basePath+slider.image"
-                                                     style="width: 100px;" alt="slider Image"> 
-                                                 </div>
                                        
                                             </td>
                                              <td>
@@ -57,8 +53,8 @@
                                                 <span v-else class="badge">De-active</span>
                                             </td>
                                             <td>
-                                                <router-link class="btn btn-success" :to="{ name : 'category_slider_edit', params :{ id : slider.id }}"> <i class="fa fa-edit"> </i></router-link>
-                                                <a class="btn btn-danger" @click="destroy(slider)"><i class="fa fa-trash"></i></a>
+                                                <router-link class="btn btn-success" :to="{ name : 'edit_category_slider', params :{ id : slider.id }}"> <i class="fa fa-edit"> </i></router-link>
+                                                <a class="btn btn-danger" @click="destroyCategorySlider(slider)"><i class="fa fa-trash"></i></a>
 
                                                 <a class="btn btn-warning" title="De-active" @click="deActive(slider)"
                                                    v-if="slider.status==1"><i class="fa fa-ban"></i></a>
@@ -115,7 +111,7 @@
                 sliders: {},
                 loading: true,
                 search: '',
-                basePath:this.$store.state.image_base_link,
+                base_url:this.$store.state.storage,
             }
         },
         methods: {
@@ -239,7 +235,7 @@
                     }
                 })
             },
-            destroy(slider) {
+            destroyCategorySlider(slider) {
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't delete this slider!",
