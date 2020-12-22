@@ -100,8 +100,18 @@ Route::get('api/check/session/admin','Admin\AdminController@sessionCheck');
       Route::get('api/category/delete/slider/{id}','SliderController@destroy_category_slider');
 
       
+      //carrier route is here 
+      Route::get('api/carrier/list','CarrierController@index');
+      Route::post('api/carrier/add/post','CarrierController@add_carrier');
+      Route::post('api/carrier/update/{id}','CarrierController@update_carrier');
+      Route::get('api/get/carrier/edit/{id}','CarrierController@getEdit_carrier');
+      Route::get('api/applied/applier/job/{id}','CarrierController@job_applied');
+      Route::get('api/download/user/resume/{id}','CarrierController@download_applied_user_resume');
+      Route::get('api/carrier/active/{id}','CarrierController@active_carrier');
+      Route::get('api/carrier/deactive/{id}','CarrierController@deactive_carrier');
+      Route::get('api/carrier/trash/{id}','CarrierController@destroy_carrier');
 
-
+   
 
 
 

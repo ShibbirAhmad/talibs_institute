@@ -54,6 +54,13 @@ import AddCategorySlider  from "./components/admin/category_slider/Add.vue" ;
 import EditCategorySlider from "./components/admin/category_slider/Edit.vue" ;
 
 
+import carrierList        from "./components/admin/carrier/Index.vue" ;
+import AddCarrier         from "./components/admin/carrier/Add.vue" ;
+import EditCarrier        from "./components/admin/carrier/Edit.vue" ;
+import ShowCarrier        from "./components/admin/carrier/Show.vue" ;
+import ApplicantCarrier   from "./components/admin/carrier/JobApplied.vue" ;
+
+
 
 const Foo = { template: '<div>public </div>' }
 
@@ -372,6 +379,52 @@ const routes = [
     component: EditCategorySlider,
     name : 'edit_category_slider',
     meta: {  title:'category slider edit',
+             authAdmin: true 
+           } 
+    },
+
+
+     { 
+    path: '/backend/carrier/post/list', 
+    component: carrierList,
+    name : 'carrier_list',
+    meta: {  title:'carriers',
+             authAdmin: true 
+           } 
+    },
+
+   { 
+    path: '/backend/carrier/post/add', 
+    component: AddCarrier,
+    name : 'add_carrier',
+    meta: {  title:'carrier add',
+             authAdmin: true 
+           } 
+    },
+
+    { 
+    path: '/backend/carrier/post/edit/:id', 
+    component: EditCarrier,
+    name : 'edit_carrier',
+    meta: {  title:'carrier edit',
+             authAdmin: true 
+           } 
+    },
+ 
+    { 
+    path: '/backend/carrier/post/show/:id', 
+    component: ShowCarrier,
+    name : 'show_carrier',
+    meta: {  title:'carrier show',
+             authAdmin: true 
+           } 
+    },
+
+    { 
+    path: '/backend/applicant/carrier/post/:id', 
+    component: ApplicantCarrier,
+    name : 'candidate_carrier',
+    meta: {  title:'carrier applicant show',
              authAdmin: true 
            } 
     },
