@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/{any}', function () {
+
+    return view('frontend.app');
+
+})->where('any', '^(?!api\/)[\/\w\.\,-]*');
+
+
+
 
 
 Route::get('/backend/{any}', function () {

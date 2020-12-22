@@ -3,6 +3,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+import LandingPage       from "./components/frontend/Index.vue"
 
 import AdminLogin        from "./components/admin/Login" ;
 
@@ -69,8 +70,11 @@ const routes = [
 
   
   { path: '/', 
-    component: Foo,
-    name: 'home'
+    component: LandingPage,
+    name: 'landing_page',
+    meta:{
+       title: 'welecome ',
+    }
    },
 
 

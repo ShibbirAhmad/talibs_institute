@@ -16,7 +16,8 @@ Vue.use(Toasted)
 Vue.component('navbar',require('./components/admin/Navbar.vue').default)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
-
+Vue.component('header-section',require('./components/frontend/Header.vue').default);
+Vue.component('footer-section',require('./components/frontend/Footer.vue').default);
 import VueProgressBar from 'vue-progressbar'
 
 Vue.use(VueProgressBar, {
