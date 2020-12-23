@@ -43,6 +43,7 @@ class CourseController extends Controller
                'name' => 'required|unique:courses',
                'category_id'=> 'required',
                'duration'=> 'required',
+               'fee'=> 'required',
                'start_date'=> 'required',
                'description'=> 'required',
                'image.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -64,6 +65,7 @@ class CourseController extends Controller
               $course->category_id=$request->category_id;
               $course->duration=$request->duration;
               $course->start_date=$request->start_date;
+              $course->fee=$request->fee;
               $course->offer=$request->offer;
               $course->description=$request->description;
               $course->status=1;
@@ -98,6 +100,7 @@ class CourseController extends Controller
                'category_id'=> 'required',
                'duration'=> 'required',
                'start_date'=> 'required',
+               'fee'=> 'required',
                'description'=> 'required',
                'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
           ]);
@@ -107,7 +110,8 @@ class CourseController extends Controller
               $course->category_id=$request->category_id;
               $course->duration=$request->duration;
               $course->start_date=$request->start_date;
-              $course->offer=$request->offer;
+              $course->offer=$request->fee;
+              $course->fee=$request->offer;
               $course->description=$request->description;
               $course->status=1;
 

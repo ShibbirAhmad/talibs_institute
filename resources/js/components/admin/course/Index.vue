@@ -35,8 +35,9 @@
                       <th>Start Date</th>
                       <th>Registered Student </th>
                       <th>Image</th>
-                      <th>offer</th>
-                      <th>status</th>
+                      <th>Fee</th>
+                      <th>Offer</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -57,6 +58,8 @@
                           class="small-image"
                         />
                       </td>
+                      <td>{{ course.fee }}</td>
+
                       <td>{{ course.offer }}%</td>
                       <td>
                         <span v-if="course.status == 1" class="badge"

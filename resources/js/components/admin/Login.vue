@@ -1,17 +1,16 @@
 <template>
   <div>
     <div class="content-wrapper">
-   
-      <section class="content">
-        <div class="row justify-content-center">
-           <div class="col-md-1"></div> 
-          <div class="col-lg-4 col-md-4 col-lg-offset-2">
-            <div style="margin-top:200px;" class="box box-primary">
-              <div class="box-header text-center with-border">
-                <h3 class="box-title">Login in to start your session</h3>
-              </div>
-              <div class="box-body">
-                <form
+
+        <div class="row">
+           <div class="col-md-4 col-lg-4"></div>
+           <div class="col-md-4 col-lg-4">
+              <div class="form_container">
+                 <div style="margin:10px;" > 
+                   <div style="padding-top:10px;" class="text-center">
+                     <h5  class="heading"> Login to start your session </h5>
+                   </div>
+                   <form
                   @submit.prevent="adminLogin"
                 >
                   <div class="form-group">
@@ -37,9 +36,9 @@
                     />
                     <has-error :form="form" field="password"></has-error>
                   </div>
-                  <br />
-                 <div class="text-center form-group">
-                  <button
+           
+                 <div  class="text-center form-group">
+                  <button style="margin-bottom:10px;"
                     :disabled="form.busy"
                     class="btn btn-lg btn-info"
                     type="submit"
@@ -49,12 +48,12 @@
                  </div>
                  
                 </form>
-              </div>
-            </div>
-          </div>
-           <div class="col-md-4"></div> 
-        </div>
-      </section>
+               </div>
+             </div>
+           </div>
+           <div class="col-md-4 col-lg-4"></div>
+          </div>      
+     
     </div>
   </div>
 </template>
@@ -133,6 +132,14 @@ export default {
 </script>
 
 
-<style>
+
+<style scoped >
+
+.form_container {
+
+     margin-top:80px;
+     background:#eee ;
+     box-shadow: 1px 2px 1px #ddd;
+}
 
 </style>

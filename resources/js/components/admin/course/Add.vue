@@ -86,6 +86,20 @@
                     <has-error :form="form" field="start_date"></has-error>
                   </div>
                   <br />
+
+                  <div class="form-group">
+                    <label>Course fee </label>
+                    <input
+                      v-model="form.fee"
+                      :class="{ 'is-invalid': form.errors.has('fee') }"
+                      class="form-control"
+                      type="text"
+                      placeholder="example as 3000  "
+                      name="fee"
+                    />
+                    <has-error :form="form" field="fee"></has-error>
+                  </div>
+
                   <div class="form-group">
                     <label>Offer/Discount </label>
                     <input
@@ -94,7 +108,7 @@
                       class="form-control"
                       type="text"
                       placeholder="example as 10% "
-                      name="duration"
+                      name="offer"
                     />
                     <has-error :form="form" field="offer"></has-error>
                   </div>
@@ -186,6 +200,7 @@ export default {
         name: "",
         category_id: "select category",
         duration: "",
+        fee: "",
         offer: "",
         start_date: "",
         image: "",

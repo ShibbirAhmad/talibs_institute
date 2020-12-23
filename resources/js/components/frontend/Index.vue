@@ -176,90 +176,22 @@
 				<p>Building a better world, one course at a time</p>
 			</div>
 			<div class="row">
+
 				<!-- course item -->
-				<div class="col-lg-4 col-md-6 course-item">
+				<div v-for="(course,index) in courses" :key="index" class="col-lg-4 col-md-6 course-item">
 					<div class="course-thumb">
-						<img src="img/course/1.jpg" alt="">
+						<img :src="course.image ? base_url+course.image : base_url+'images/no_image.jpg' " alt="">
 						<div class="course-cat">
-							<span>BUSINESS</span>
+							<span>{{ course.category_name.name }}</span>
 						</div>
 					</div>
 					<div class="course-info">
-						<div class="date"><i class="fa fa-clock-o"></i> 22 Mar 2018</div>
-						<h4>Certificate Course in Writing<br>for a Global Market</h4>
-						<h4 class="cource-price">$100<span>/month</span></h4>
+						<div class="date"><i class="fa fa-clock-o"></i> {{ courseTimeFormater(course.start_date) }}</div>
+						<h4>{{ course.name }} </h4>
+						<h4 class="cource-price"> {{ course.duration }} </h4>
 					</div>
 				</div>
-				<!-- course item -->
-				<div class="col-lg-4 col-md-6 course-item">
-					<div class="course-thumb">
-						<img src="img/course/2.jpg" alt="">
-						<div class="course-cat">
-							<span>Marketing</span>
-						</div>
-					</div>
-					<div class="course-info">
-						<div class="date"><i class="fa fa-clock-o"></i> 22 Mar 2018</div>
-						<h4>Google AdWords: Get More<br> Customers with Search Marketing </h4>
-						<h4 class="cource-price">$150<span>/month</span></h4>
-					</div>
-				</div>
-				<!-- course item -->
-				<div class="col-lg-4 col-md-6 course-item">
-					<div class="course-thumb">
-						<img src="img/course/3.jpg" alt="">
-						<div class="course-cat">
-							<span>DESIGN</span>
-						</div>
-					</div>
-					<div class="course-info">
-						<div class="date"><i class="fa fa-clock-o"></i> 22 Mar 2018</div>
-						<h4>The Ultimate Drawing Course<br> Beginner to Advanced</h4>
-						<h4 class="cource-price">$180<span>/month</span></h4>
-					</div>
-				</div>
-				<!-- course item -->
-				<div class="col-lg-4 col-md-6 course-item">
-					<div class="course-thumb">
-						<img src="img/course/4.jpg" alt="">
-						<div class="course-cat">
-							<span>DATABASE</span>
-						</div>
-					</div>
-					<div class="course-info">
-						<div class="date"><i class="fa fa-clock-o"></i> 22 Mar 2018</div>
-						<h4>Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert</h4>
-						<h4 class="cource-price">$150<span>/month</span></h4>
-					</div>
-				</div>
-				<!-- course item -->
-				<div class="col-lg-4 col-md-6 course-item">
-					<div class="course-thumb">
-						<img src="img/course/5.jpg" alt="">
-						<div class="course-cat">
-							<span>PROGRAM</span>
-						</div>
-					</div>
-					<div class="course-info">
-						<div class="date"><i class="fa fa-clock-o"></i> 22 Mar 2018</div>
-						<h4>Web Developer Bootcamp<br>Make web  applications</h4>
-						<h4 class="cource-price">$250<span>/month</span></h4>
-					</div>
-				</div>
-				<!-- course item -->
-				<div class="col-lg-4 col-md-6 course-item">
-					<div class="course-thumb">
-						<img src="img/course/6.jpg" alt="">
-						<div class="course-cat">
-							<span>BUSINESS</span>
-						</div>
-					</div>
-					<div class="course-info">
-						<div class="date"><i class="fa fa-clock-o"></i> 22 Mar 2018</div>
-						<h4>How to Start an Amazon<br>FBA Store on a Tight Budget</h4>
-						<h4 class="cource-price">$150<span>/month</span></h4>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</section>
@@ -393,58 +325,21 @@
 				<p>Get latest breaking news & top stories today</p>
 			</div>
 			<div class="row">
-				<div class="col-xl-6">
+
+				<div v-for="(post,index) in blogPosts " :key="index" class="col-xl-6">
 					<div class="blog-item">
 						<div class="blog-thumb set-bg" data-setbg="img/blog/1.jpg"></div>
 						<div class="blog-content">
-							<h4>Parents who try to be their children’s best friends</h4>
+							<h4> {{ post.title }} </h4>
 							<div class="blog-meta">
-								<span><i class="fa fa-calendar-o"></i> 24 Mar 2018</span>
-								<span><i class="fa fa-user"></i> Owen Wilson</span>
+								<span><i class="fa fa-calendar-o"></i> {{ postTimeFormater(post.created_at) }} </span>
+								<span><i class="fa fa-user"></i> {{ post.admin_name.name }} </span>
 							</div>
-							<p>Integer luctus diam ac scerisque consectetur. Vimus dot euismod neganeco lacus sit amet. Aenean interdus mid vitae sed accumsan...</p>
+							<p  v-html="post.description.substr(1,200)"></p>
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-6">
-					<div class="blog-item">
-						<div class="blog-thumb set-bg" data-setbg="img/blog/2.jpg"></div>
-						<div class="blog-content">
-							<h4>Graduations could be delayed as external examiners</h4>
-							<div class="blog-meta">
-								<span><i class="fa fa-calendar-o"></i> 23 Mar 2018</span>
-								<span><i class="fa fa-user"></i> Owen Wilson</span>
-							</div>
-							<p>Integer luctus diam ac scerisque consectetur. Vimus dot euismod neganeco lacus sit amet. Aenean interdus mid vitae sed accumsan...</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-6">
-					<div class="blog-item">
-						<div class="blog-thumb set-bg" data-setbg="img/blog/3.jpg"></div>
-						<div class="blog-content">
-							<h4>Private schools adopt a Ucas style application system</h4>
-							<div class="blog-meta">
-								<span><i class="fa fa-calendar-o"></i> 24 Mar 2018</span>
-								<span><i class="fa fa-user"></i> Owen Wilson</span>
-							</div>
-							<p>Integer luctus diam ac scerisque consectetur. Vimus dot euismod neganeco lacus sit amet. Aenean interdus mid vitae sed accumsan...</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-6">
-					<div class="blog-item">
-						<div class="blog-thumb set-bg" data-setbg="img/blog/4.jpg"></div>
-						<div class="blog-content">
-							<h4>Cambridge digs in at the top of university league table</h4>
-							<div class="blog-meta">
-								<span><i class="fa fa-calendar-o"></i> 23 Mar 2018</span>
-								<span><i class="fa fa-user"></i> Owen Wilson</span>
-							</div>
-							<p>Integer luctus diam ac scerisque consectetur. Vimus dot euismod neganeco lacus sit amet. Aenean interdus mid vitae sed accumsan...</p>
-						</div>
-					</div>
-				</div>
+			
 			</div>
 		</div>
 	</section>
@@ -475,3 +370,95 @@
     <footer-section> </footer-section>
     </div>
 </template>
+
+<script>
+export default {
+	
+	 created (){
+	  this.getCourseList();
+	  this.getPostList();
+	 },
+
+	 data(){
+
+	 return {
+
+	   courses:"",
+	   blogPosts:"",
+	   base_url:this.$store.state.storage,
+
+	   }
+	 },
+
+
+	 methods:{
+
+        getCourseList(){
+		  axios.get('/api/display/course/public')
+		  .then(resp =>{
+			  console.log(resp);
+             if(resp.data.status == "OK"){
+                this.courses= resp.data.courses ;
+			 } 
+		  })
+		},
+
+
+		getPostList(){
+
+		  axios.get('/api/blog/post/public')
+		  .then(resp =>{
+			  console.log(resp);
+             if(resp.data.status == "OK"){
+                this.blogPosts= resp.data.blog_posts ;
+			 } 
+		  })
+		},
+
+     courseTimeFormater(start_date){
+
+		 let dayMonthYear = new Date(start_date);
+			var days = dayMonthYear.getDay();
+			var months =dayMonthYear.getMonth();
+			var years= dayMonthYear.getFullYear();
+
+			const dm = new Date(years,months,days);
+			const yea = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(dm);
+			const mon = new Intl.DateTimeFormat('en', { month: 'short' }).format(dm);
+			const dy = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(dm);
+			let c_date = `${dy}-${mon}-${yea}`  ;
+			return c_date ; 
+	 },
+
+	 postTimeFormater(created_at){
+			let dmy = new Date(created_at);
+			var day= dmy.getDay();
+			var month =dmy.getMonth();
+			var year= dmy.getFullYear();
+
+			const d = new Date(year,month,day);
+			const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+			const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+			const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+			let r_date = `${da}-${mo}-${ye}`  ;
+			return r_date ;
+		}
+
+
+
+	 }
+
+
+
+}
+
+</script>
+
+
+<style scoped>
+ 
+  h4 {
+   font-size: 16px;
+  }
+
+</style>

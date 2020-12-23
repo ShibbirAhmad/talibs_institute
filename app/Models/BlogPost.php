@@ -10,4 +10,12 @@ class BlogPost extends Model
 
         return  $this->belongsTo('App\Models\Admin','admin_id','id') ;
       }
+
+
+      public function category_name(){
+
+        return  $this->belongsTo('App\Models\Category','category_id','id') ;
+      }
+
+
 }

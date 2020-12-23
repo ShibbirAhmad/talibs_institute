@@ -84,6 +84,17 @@
                     <has-error :form="form" field="start_date"></has-error>
                   </div>
                   <br />
+                    <div class="form-group">
+                    <label>Course Fee </label>
+                    <input
+                      v-model="form.fee"
+                      :class="{ 'is-invalid': form.errors.has('fee') }"
+                      class="form-control"
+                      type="text"
+                      name="fee"
+                    />
+                    <has-error :form="form" field="fee"></has-error>
+                  </div>
                   <div class="form-group">
                     <label>Offer/Discount </label>
                     <input
@@ -91,7 +102,7 @@
                       :class="{ 'is-invalid': form.errors.has('offer') }"
                       class="form-control"
                       type="text"
-                      name="duration"
+                      name="offer"
                     />
                     <has-error :form="form" field="offer"></has-error>
                   </div>
@@ -183,6 +194,7 @@ export default {
         name: "",
         category_id: "",
         duration: "",
+        fee: "",
         offer: "",
         start_date: "",
         image: "",
@@ -212,6 +224,7 @@ export default {
           this.form.description = resp.data.course.description;
           this.form.category_id = resp.data.course.category_id;
           this.form.image = resp.data.course.image;
+          this.form.fee = resp.data.course.fee;
           this.form.offer = resp.data.course.offer;
           this.$Progress.finish();
         } else {

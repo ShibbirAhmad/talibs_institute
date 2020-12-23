@@ -7,4 +7,4 @@
 
   <link rel="stylesheet" href="{{ asset('backend/dist/css/skins/_all-skins.min.css') }}"> 
 
-  
+ 
