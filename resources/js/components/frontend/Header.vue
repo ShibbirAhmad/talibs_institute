@@ -26,7 +26,9 @@
 <script>
 export default {
   mounted() {
+
     this.$store.dispatch("categories");
+    
   },
 
   data() {
