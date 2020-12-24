@@ -3,12 +3,12 @@
     <div class="content-wrapper">
 
         <div class="row">
-           <div class="col-md-4 col-lg-4"></div>
+           <div class="col-md-2 col-lg-2"></div>
            <div class="col-md-4 col-lg-4">
               <div class="form_container">
                  <div style="margin:10px;" > 
                    <div style="padding-top:10px;" class="text-center">
-                     <h5  class="heading"> Login to start your session </h5>
+                     <h4  class="heading"> Login to start your session </h4>
                    </div>
                    <form
                   @submit.prevent="adminLogin"
@@ -96,7 +96,6 @@ export default {
         .then((resp) => {
           console.log(resp);
           if (resp.data.status == "SUCCESS") {
-              this.$Progress.finish()
               this.$toasted.show(resp.data.message,{
                 type:'success',
                 position:'top-center',
@@ -106,6 +105,7 @@ export default {
               this.$store.commit("admin", resp.data.admin);
               this.$router.push({ name : 'admin_dashboard'});
               location.reload();
+              this.$Progress.finish()
           }else{
               this.$toasted.show(resp.data.message,{
               type:'error',
