@@ -6,19 +6,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course ;
 use App\Models\BlogPost ;
+use App\Models\Category;
+use App\Models\Slider;
+use App\Models\CategorySlider;
 
 class HomeController extends Controller
 {
      
 
-       public function get_course_list(){
+        public function get_course_list(){
 
-            $courses = Course::where('status',1)->latest()->take(4)->with('category_name')->get();
-            return response()->json([
-                "status" => "OK",
-                "courses" => $courses
-            ]);
-       }
+                $courses = Course::where('status',1)->latest()->take(4)->with('category_name')->get();
+                return response()->json([
+                    "status" => "OK",
+                    "courses" => $courses
+                ]);
+          }
 
 
 
@@ -30,11 +33,43 @@ class HomeController extends Controller
                         "status" => "OK",
                         "blog_posts" => $blog_posts,
                     ]);
-            }
+           }
+
+
+        public function get_category_list(){
+
+                $categories = Category::where('status',1)->get();
+                return response()->json([
+                    "status" => "OK",
+                    "categories" => $categories
+                ]);
+          }
 
 
 
+       public function get_landing_sliders(){
+
+                $landing_sliders = Slider::where('status',1)->get();
+                return response()->json([
+                    "status" => "OK",
+                    "landing_sliders" => $landing_sliders
+                ]);
+        }
 
 
-       
+
+        public function get_category_sliders(){
+
+                $category_sliders = CategorySlider::where('page_position',1)->where('status',1)->get();
+                return response()->json([
+                    "status" => "OK",
+                    "category_sliders" => $category_sliders,
+                ]);
+
+           }
+
+      
+
+
+
 }

@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-
+//laravel and vue mix routing for admin app
 Route::get('/backend/{any}', function () {
+
 
     return view('admin.app');
 
@@ -25,12 +25,9 @@ Route::get('/backend/{any}', function () {
 
 
 
-
+// laravel and vue mix routing for frontend app
 Route::get('/{any}', function () {
 
-    return view('frontend.app');
+   return view('frontend.app');
 
 })->where('any', '^(?!api\/)[\/\w\.\,-]*');
-
-
-
